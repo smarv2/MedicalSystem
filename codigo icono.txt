@@ -1,0 +1,1 @@
+setIconImage(new ImageIcon(password.class.getResource("icono.jpg")).getImage());
