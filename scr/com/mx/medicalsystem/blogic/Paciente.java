@@ -1,5 +1,6 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.blogic;
 
+import com.mx.medicalsystem.dao.ctrlPaciente;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

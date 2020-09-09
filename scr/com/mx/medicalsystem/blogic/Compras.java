@@ -1,3 +1,6 @@
+package com.mx.medicalsystem.blogic;
+
+import com.mx.medicalsystem.dao.crlCompras;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -210,7 +213,7 @@ public void eventos(){
 			String lblIdMedicamento=txtIdMedicamento.getText();
 			
 			if(lblIdMedicamento.equalsIgnoreCase("")||lblIdMedicamento.equalsIgnoreCase(" ")||lblIdMedicamento.equalsIgnoreCase("  ")){
-				ctrlCom.msgError("La caja de texto está vacía");
+				ctrlCom.msgError("La caja de texto estï¿½ vacï¿½a");
 			}else{
 				buscaEliminaCompras();
 			}
@@ -278,7 +281,7 @@ public void buscaEliminaCompras(){
 			txtCantidadCompra.setText(resultado.getString("CantidadCompra"));
 			
 			
-			int val=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el registro actual?",
+			int val=JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½ seguro de eliminar el registro actual?",
 			"Compras", JOptionPane.YES_NO_OPTION);
 			if(val==JOptionPane.YES_OPTION){
 				String lblIdMedicamento=txtIdMedicamento.getText();
@@ -309,7 +312,7 @@ public static void main(String []args){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

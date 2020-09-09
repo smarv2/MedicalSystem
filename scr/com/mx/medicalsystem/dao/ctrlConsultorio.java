@@ -1,11 +1,12 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.dao;
 
-import static com.mx.medicalsystem.Consultorio.ctrlConsul;
 import com.mx.medicalsystem.util.ConexionMySQL;
-import javax.swing.*;
+import com.mx.medicalsystem.util.Utils;
 import java.sql.*;
 
 public class ctrlConsultorio {
+
+    Utils utils = new Utils();
 
     /*public static String url = "jdbc:odbc:Driver={Microsoft Access driver (*.mdb)};DBQ=Clinica.mdb";
     public static final String driver = "sun.jdbc.odbc.JdbcOdbcDriver";
@@ -28,7 +29,7 @@ public class ctrlConsultorio {
     }*/
     public void insertaConsultorio(String idConsul, String desc) {
         PreparedStatement sentencia;
-        ResultSet resultado;
+        //ResultSet resultado;
         try {
             //conexion = DriverManager.getConnection(url);
 
@@ -45,9 +46,10 @@ public class ctrlConsultorio {
             sentencia.close();
             conexion.close();
 
-            msgInf("Los datos han sido guardados");
+            utils.msgInf("Los datos han sido guardados");
         } catch (SQLException err) {
-            msgError("Alguno de los datos insertados es incorrecto: " + err);
+            utils.msgError("Alguno de los datos insertados es incorrecto.");
+            System.err.println("Alguno de los datos insertados es incorrecto: " + err);
         }
     }
 
@@ -62,15 +64,15 @@ public class ctrlConsultorio {
             sentencia.setString(1, idConsul);
             sentencia.executeUpdate();
 
-            msgInf("El registro ha sido eliminado satisfactoriamente");
+            utils.msgInf("El registro ha sido eliminado satisfactoriamente");
         } catch (SQLException err) {
-            msgError("La clave no existe." + "\nNo es posible eliminar el registro definido");
+            utils.msgError("La clave no existe." + "\nNo es posible eliminar el registro definido");
         }
     }
 
     public void actualizaConsultorio(String idConsul, String desc) {
         PreparedStatement sentencia;
-        ResultSet resultado;
+        //ResultSet resultado;
         try {
             //conexion = DriverManager.getConnection(url);
 
@@ -85,20 +87,19 @@ public class ctrlConsultorio {
 
             sentencia.executeUpdate();
 
-            msgInf("El registro ha sido actualizado satisfactoriamente");
+            utils.msgInf("El registro ha sido actualizado satisfactoriamente");
         } catch (Exception err) {
-
-            err.printStackTrace();
-            msgError("La clave no existe." + "\nNo es posible actualizar el registro: " + err);
+            utils.msgError("La clave no existe." + "\nNo es posible actualizar el registro: ");
+            System.err.println("La clave no existe." + "\nNo es posible actualizar el registro: " + err);
         }
     }
 
-    public String buscaConsultorio(String idConsul ) {
+    public String buscaConsultorio(String idConsul) {
         System.out.println("buscaConsultorio");
         String descConsultorio = null;
         try {
             //Connection conexion = DriverManager.getConnection(ctrlConsul.url);
-                        
+
             ConexionMySQL mysql = new ConexionMySQL();
             Connection conexion = mysql.conectar();
             PreparedStatement sentencia = conexion.prepareStatement("select * from Consultorio where IdConsultorio=?");
@@ -114,20 +115,12 @@ public class ctrlConsultorio {
             sentencia.close();
             conexion.close();
         } catch (SQLException e) {
-            ctrlConsul.msgError("La clave a buscar no existe");
+            utils.msgError("La clave a buscar no existe");
             System.err.println("Error: " + e);
         } finally {
 
         }
         return descConsultorio;
-    }
-
-    public void msgError(String error) {
-        JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void msgInf(String inf) {
-        JOptionPane.showMessageDialog(null, inf, "Información", JOptionPane.WARNING_MESSAGE);
     }
 
 }

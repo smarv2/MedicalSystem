@@ -1,5 +1,6 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.blogic;
 
+import com.mx.medicalsystem.dao.ctrlMedicamentos;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,13 +10,28 @@ import javax.swing.plaf.metal.*;
 import javax.swing.border.*;
 import java.sql.*;
 
-public class Existencias extends JFrame{
+
+public class Medicamento extends JFrame{
 	private JTextField txtIdMedicamento=new JTextField(15);
 	private JLabel lblIdMedicamento=new JLabel("Clave del medicamento:");
-	private JTextField txtExistencia=new JTextField(10);
-	private JLabel lblExistencia=new JLabel("Existencia:");
-	JPanel datos=new JPanel();
+	private JTextField txtNombre=new JTextField(10);
+	private JLabel lblNombre=new JLabel("Nombre del medicamento:");
+	private JTextField txtTipo=new JTextField(10);
+	private JLabel lblTipo=new JLabel("Tipo:");
+	private String[] pa={"Ampolletas","Jarabe", "Tabletas"};
+	private JComboBox box1=new JComboBox(pa);
 	
+	private JTextField txtPrecioVenta=new JTextField(5);
+	private JLabel lblPrecioVenta =new JLabel("Precio de venta:");
+	private JTextField txtEntradas=new JTextField(5);
+	private JLabel lblEntradas=new JLabel ("Entradas:");
+	private JTextField txtSalidas=new JTextField (5);
+	private JLabel lblSalidas=new JLabel("Salidas:");
+	private JTextField txtExistencias=new JTextField (5);
+	private JLabel lblExistencias=new JLabel("Existencias:");
+	private JLabel imagen = new JLabel (new ImageIcon ("engranes.gif"));
+	private JPanel datos=new JPanel();
+	private JPanel generales=new JPanel();
 	
 	private final JToolBar herramientas=new JToolBar();
 	
@@ -35,58 +51,113 @@ public class Existencias extends JFrame{
 	private JButton btnGuardar=new JButton(imagen5);
 	private JButton btnRegresar=new JButton(imagen6);
 	private JPanel principal=new JPanel();
-	private Border borde;
 	
-		
-	public Existencias(){
-    super  ("Existencias");
+	private Border borde;
+	private Border borde1;
+	
+	public static ctrlMedicamentos ctrlMed=new ctrlMedicamentos();
+	
+	public Medicamento(){
+    super  ("Medicamento");
     setLayout(new BorderLayout());
-    setSize(480,260);
+    setSize(600,430);
+
+    setIconImage(new ImageIcon(Medicamento.class.getResource("icono.jpg")).getImage());
     
+    	borde=BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.blue ,Color.darkGray);
+	Border titulo=BorderFactory.createTitledBorder(borde," Control Medicamento ");
+	datos.setBorder(titulo);
+	
+		borde1=BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.blue ,Color.darkGray);
+	Border titulo1=BorderFactory.createTitledBorder(borde1," Descripcion Medicamento ");
+	generales.setBorder(titulo1);
+	
+	datos.setBounds(10,125,570,130);
+	datos.setLayout(null);
+	
+	generales.setBounds(10,5,570,110);
+	generales.setLayout(null);
+	
+	setIconImage(new ImageIcon(Medicamento.class.getResource("icono.jpg")).getImage());    
     setResizable(false);
 	Dimension pantalla, cuadro;
     pantalla = Toolkit.getDefaultToolkit().getScreenSize();
     cuadro = this.getSize();
     this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
  
- 	borde=BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.blue ,Color.darkGray);
-	Border titulo=BorderFactory.createTitledBorder(borde,"");
-	datos.setBorder(titulo);
-	
-	datos.setBounds(40,10,385,150);
-	datos.setLayout(null);
-	
-	lblIdMedicamento.setBounds(new Rectangle(100,50,140,20));
-  	txtIdMedicamento.setBounds(new Rectangle(240,50,60,20));
-		
-	lblExistencia.setBounds(new Rectangle(175,90,200,20));
-	 	txtExistencia.setBounds(new Rectangle(240,90,60,20));
-	
-	
-
-	  
+    txtIdMedicamento.setBounds(195,35,50,20);
+    lblIdMedicamento.setBounds(20,35,200,20); 
+    txtNombre.setBounds(195,75,120,20);  
+    lblNombre.setBounds(20,75,200,20); 
+    //txtTipo.setBounds(440,75,130,20); 
+   	box1.setBounds(new Rectangle(440,75,130,20));
+    lblTipo.setBounds(380,75,150,20); 
+    	
+    txtPrecioVenta.setBounds(195,155,55,20); 
+    lblPrecioVenta.setBounds(60,155,150,20); 
+    txtEntradas.setBounds(440,155,55,20);  
+    lblEntradas.setBounds(345,155,150,20);
+    txtSalidas.setBounds(195,195,55,20); 
+    lblSalidas.setBounds(60,195,150,20); 
+   // btnRegresar.setBounds(390,200,100,45); 
+    txtExistencias.setBounds(440,195,55,20); 
+    lblExistencias.setBounds(345,195,150,20); 
+    imagen.setBounds(new Rectangle(245,240,110,120));
+	principal.add(imagen);
     
     principal.setLayout(null);
     principal.add(txtIdMedicamento);
     principal.add(lblIdMedicamento);
-    principal.add(txtExistencia);
-    principal.add(lblExistencia);
-    principal.add(datos);
+    principal.add(txtNombre);
+    principal.add(lblNombre);
+    principal.add(box1);
+    principal.add(lblTipo);
     
-    lblIdMedicamento.setFont(new Font("Georgia",Font.BOLD,12));
-	lblIdMedicamento.setForeground(Color.black);
+    principal.add(txtPrecioVenta);
+    principal.add(lblPrecioVenta);
+    principal.add(txtEntradas);
+    principal.add(lblEntradas);
+    principal.add(txtSalidas);
+    principal.add(lblSalidas);
+    principal.add(txtExistencias);
+    principal.add(lblExistencias);
+    
+    principal.add(datos);
 		
-	lblExistencia.setFont(new Font("Georgia",Font.BOLD,12));
-	lblExistencia.setForeground(Color.black);
+		principal.add(generales);
+		
+		lblIdMedicamento.setFont(new Font("Georgia",Font.BOLD,12));
+		lblIdMedicamento.setForeground(Color.black);
+		
+		lblNombre.setFont(new Font("Georgia",Font.BOLD,12));
+		lblNombre.setForeground(Color.black);
 
+	    lblTipo .setFont(new Font("Georgia",Font.BOLD,12));
+		lblTipo.setForeground(Color.black);
+		
+		lblPrecioVenta.setFont(new Font("Georgia",Font.BOLD,12));
+		lblPrecioVenta.setForeground(Color.black);
+
+    	lblEntradas.setFont(new Font("Georgia",Font.BOLD,12));
+		lblEntradas.setForeground(Color.black);
+		
+		lblSalidas.setFont(new Font("Georgia",Font.BOLD,12));
+		lblSalidas.setForeground(Color.black);
+
+	     lblExistencias.setFont(new Font("Georgia",Font.BOLD,12));
+		lblExistencias.setForeground(Color.black);
+		
 	
-     	
+	
+		
+  
+  	
   	btnAltas.setToolTipText("Nuevo registro");
+  	btnimprimir.setToolTipText("Imprimir registro");
   	btnConsultas.setToolTipText("Buscar registro");
   	btnEliminar.setToolTipText("Eliminar registro");
   	btnModificar.setToolTipText("Modificar registro");
   	btnGuardar.setToolTipText("Guardar registro");
-  	btnimprimir.setToolTipText("Imprimir registro");
   	btnRegresar.setToolTipText("Regresar al menu principal");
 
   	this.add(herramientas, BorderLayout.NORTH);
@@ -97,10 +168,9 @@ public class Existencias extends JFrame{
 	agregaABarra();
 	setResizable(false);
 	
-	//ctrlExis.conexion();
+	ctrlMed.conexion();
 	
 	eventos();
-
 }
 
 public void agregaABarra(){
@@ -111,16 +181,21 @@ public void agregaABarra(){
 	herramientas.add(btnGuardar);
 	herramientas.add(btnimprimir);
 	herramientas.add(btnRegresar);
-	
 }
- public void eventos(){
+
+public void eventos(){
 	btnGuardar.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			try{
-				String lblIdMedicamento=txtIdMedicamento.getText();
+				String idMedicamento=txtIdMedicamento.getText();
+				String nombreMedicamento=txtNombre.getText();
+				String tipoMedicamento=box1.getSelectedItem().toString();
+				Double precioVenta=Double.parseDouble(txtPrecioVenta.getText());
+				int entradas=Integer.parseInt(txtEntradas.getText());
+				int salidas=Integer.parseInt(txtSalidas.getText());
 				int existencias=Integer.parseInt(txtExistencias.getText());
 				
-				ctrlExis.insertaExistencia(idMedicamento, nombreMedicamento, tipoMedicamento,
+				ctrlMed.insertaMedicamento(idMedicamento, nombreMedicamento, tipoMedicamento,
 				precioVenta, entradas, salidas, existencias);
 			}catch(Exception fi){
 			}
@@ -135,6 +210,27 @@ public void agregaABarra(){
 	}
 	);
 	
+	
+		btnAltas.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+		txtIdMedicamento.setText("");
+		txtNombre.setText("");
+		txtPrecioVenta.setText("");
+		txtEntradas.setText("");
+		txtSalidas.setText("");
+		txtExistencias.setText("");
+		
+		}
+	});
+	
+	 btnRegresar.addActionListener(new ActionListener(){
+    	public void actionPerformed(ActionEvent e){
+    		hide();
+    	}
+    }
+    );
+	
+	
 	btnEliminar.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			String idMedic=txtIdMedicamento.getText();
@@ -148,13 +244,6 @@ public void agregaABarra(){
 	}
 	);
 	
-	
-	 btnRegresar.addActionListener(new ActionListener(){
-    	public void actionPerformed(ActionEvent e){
-    		hide();
-    	}
-    }
-    );
 	btnModificar.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			if(txtIdMedicamento.getText().equalsIgnoreCase("") || txtNombre.getText().equalsIgnoreCase("") ||
@@ -262,5 +351,3 @@ public void buscaEliminaMedicamento(){
 	
 	
 	
-
-  	

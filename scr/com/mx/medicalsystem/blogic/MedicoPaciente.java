@@ -1,3 +1,6 @@
+package com.mx.medicalsystem.blogic;
+
+import com.mx.medicalsystem.dao.ctrlCitas;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -203,7 +206,7 @@ public void eventos(){
 			String idmedico=txtidmedico.getText();
 			
 			if(idmedico.equalsIgnoreCase("")||idmedico.equalsIgnoreCase(" ")||idmedico.equalsIgnoreCase("  ")){
-				ctrlcitas.msgError("La caja de texto está vacía");
+				ctrlcitas.msgError("La caja de texto estï¿½ vacï¿½a");
 			}else{
 				buscaEliminaCitas();
 			}
@@ -265,7 +268,7 @@ public void buscaEliminaCitas(){
 			txthorario.setText(resultado.getString("Horario"));
 			
 	
-		int val=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el registro actual?",
+		int val=JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½ seguro de eliminar el registro actual?",
 			"MedicoPaciente", JOptionPane.YES_NO_OPTION);
 			if(val==JOptionPane.YES_OPTION){
 				String idmedico=txtidmedico.getText();
@@ -298,7 +301,7 @@ public void buscaEliminaCitas(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

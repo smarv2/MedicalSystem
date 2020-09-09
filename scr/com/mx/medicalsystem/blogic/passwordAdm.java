@@ -1,5 +1,7 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.blogic;
 
+import com.mx.medicalsystem.blogic.TemaDigitalStone;
+import com.mx.medicalsystem.blogic.MenuAdministracion;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;

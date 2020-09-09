@@ -1,3 +1,6 @@
+package com.mx.medicalsystem.blogic;
+
+import com.mx.medicalsystem.dao.ctrlMedico;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -70,7 +73,7 @@ private Border borde1;
 	public static ctrlMedico ctrlMedi=new ctrlMedico();
 	
 	Medico(){
-		super("Médico");
+		super("Mï¿½dico");
 		setSize(800,480);
 		setVisible(true);
 		setResizable(false);
@@ -348,7 +351,7 @@ public void eventos(){
 			String id=txtid.getText();
 			
 			if(id.equalsIgnoreCase("")||id.equalsIgnoreCase(" ")||id.equalsIgnoreCase("  ")){
-				ctrlMedi.msgError("La caja de texto está vacía");
+				ctrlMedi.msgError("La caja de texto estï¿½ vacï¿½a");
 			}else{
 				buscaEliminaMedico();
 			}
@@ -449,7 +452,7 @@ public void buscaEliminaMedico(){
 			txtcedula .setText(resultado.getString("Cedula"));
 			txtconsul.setText(resultado.getString("IdConsultorio"));
 			
-			int val=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el registro actual?",
+			int val=JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½ seguro de eliminar el registro actual?",
 			"Medico", JOptionPane.YES_NO_OPTION);
 			if(val==JOptionPane.YES_OPTION){
 				String id=txtid.getText();
@@ -489,7 +492,7 @@ public void buscaEliminaMedico(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

@@ -1,3 +1,6 @@
+package com.mx.medicalsystem.blogic;
+
+import com.mx.medicalsystem.dao.ctrlEspecialidad;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -144,7 +147,7 @@ public void eventos(){
 			String id=txtid.getText();
 			
 			if(id.equalsIgnoreCase("")||id.equalsIgnoreCase(" ")||id.equalsIgnoreCase("  ")){
-				ctrlEsp.msgError("La caja de texto está vacía");
+				ctrlEsp.msgError("La caja de texto estï¿½ vacï¿½a");
 			}else{
 				buscaEliminaEspecialidad();
 			}
@@ -220,7 +223,7 @@ public void buscaEliminaEspecialidad(){
 		if(resultado.next()){
 			txtdescri.setText(resultado.getString("Descripcion"));
 			
-			int val=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el registro actual?",
+			int val=JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½ seguro de eliminar el registro actual?",
 			"Especialidad", JOptionPane.YES_NO_OPTION);
 			if(val==JOptionPane.YES_OPTION){
 				String id=txtid.getText();
@@ -246,7 +249,7 @@ public void buscaEliminaEspecialidad(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

@@ -1,4 +1,4 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.dao;
 
 import javax.swing.*;
 import java.sql.*;

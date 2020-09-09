@@ -1,7 +1,9 @@
+package com.mx.medicalsystem.dao;
+
 import javax.swing.*;
 import java.sql.*;
 
-public class ctrlCitas{
+public class crlCompras{
     public static String url = "jdbc:odbc:Driver={Microsoft Access driver (*.mdb)};DBQ=Clinica.mdb";
 	public static final String driver="sun.jdbc.odbc.JdbcOdbcDriver";
 	public static final String usuario="";
@@ -23,16 +25,18 @@ public class ctrlCitas{
 		}
 	}
 	
-	public void insertaCitas(String idmedico, String idpaciente, String fecha,
-	String horario){
+	public void insertaCompras(String lblIdMedicamento, String lblIdProveedor,
+	Double lblPrecioCompra, String lblUltimaFecha, int lblCantidadCompra){
 		try{
 			conexion=DriverManager.getConnection(url);
-			sentencia=conexion.prepareStatement("insert into MedicoPaciente values(?, ?, ?, ?)");
+			sentencia=conexion.prepareStatement("insert into Compras values(?, ?, ?, ?, ?)");
 			
-			sentencia.setString(1, idmedico);
-			sentencia.setString(2, idpaciente);
-			sentencia.setString(3, fecha);
-			sentencia.setString(4, horario);
+			sentencia.setString(1, lblIdMedicamento);
+			sentencia.setString(2, lblIdProveedor);
+			sentencia.setDouble(3, lblPrecioCompra);
+			sentencia.setString(4, lblUltimaFecha);
+			sentencia.setInt(5, lblCantidadCompra);
+			
 			
 			sentencia.executeUpdate();
 			
@@ -45,11 +49,11 @@ public class ctrlCitas{
 		}
 	}
 	
-	public void eliminaCitas(String idmedico){
+	public void eliminaCompras(String lblIdMedicamento){
 		try{
 			conexion=DriverManager.getConnection(url);
-			sentencia=conexion.prepareStatement("delete from MedicoPaciente where IdMedico=?");
-			sentencia.setString(1, idmedico);
+			sentencia=conexion.prepareStatement("delete from Compras where IdMedicamento=?");
+			sentencia.setString(1, lblIdMedicamento);
 			sentencia.executeUpdate();
 			
 			msgInf("El registro ha sido eliminado satisfactoriamente");
@@ -58,18 +62,21 @@ public class ctrlCitas{
 		}
 	}
 	
-	public void actualizaCitas(String idmedico, String idpaciente, String fecha,
-	String horario){
+	public void actualizaCompras(String lblIdMedicamento, String lblIdProveedor,
+	Double lblPrecioCompra, String lblUltimaFecha, int lblCantidadCompra){
 		try{
 			conexion=DriverManager.getConnection(url);
 			sentencia=conexion.prepareStatement(
-			"update MedicoPaciente set IdMedico=?, IdPaciente=?, Fecha=?, Horario=? where IdMedico=?");
+			"update Compras set IdMedicamento=?, IdProveedor=?, PrecioCompra=?, FechaCompra=?, " +
+			"CantidadCompra=? where IdMedicamento=?");
 			
-			sentencia.setString(1, idmedico);
-			sentencia.setString(2, idpaciente);
-			sentencia.setString(3, fecha);
-			sentencia.setString(4, horario);
-			sentencia.setString(5, idmedico);
+			sentencia.setString(1, lblIdMedicamento);
+			sentencia.setString(2, lblIdProveedor);
+			sentencia.setDouble(3, lblPrecioCompra);
+			sentencia.setString(4, lblUltimaFecha);
+			sentencia.setInt(5, lblCantidadCompra);
+			sentencia.setString(6, lblIdMedicamento);
+			
 			
 			sentencia.executeUpdate();
 			
@@ -83,7 +90,8 @@ public class ctrlCitas{
     	JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
     public void msgInf(String inf){
-    	JOptionPane.showMessageDialog(null, inf, "Información", JOptionPane.WARNING_MESSAGE);
+    	JOptionPane.showMessageDialog(null, inf, "Informaciï¿½n", JOptionPane.WARNING_MESSAGE);
     }
     
 }
+    

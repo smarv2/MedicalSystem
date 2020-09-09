@@ -1,4 +1,4 @@
-package com.mx.medicalsystem;
+package com.mx.medicalsystem.blogic;
 
 import java.awt.*;
 import java.awt.event.*;

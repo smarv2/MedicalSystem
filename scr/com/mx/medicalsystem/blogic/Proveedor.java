@@ -1,3 +1,6 @@
+package com.mx.medicalsystem.blogic;
+
+import com.mx.medicalsystem.dao.ctrlProveedor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -283,7 +286,7 @@ public void eventos(){
 			String lblIdProveedor=txtIdProveedor.getText();
 			
 			if(lblIdProveedor.equalsIgnoreCase("")||lblIdProveedor.equalsIgnoreCase(" ")||lblIdProveedor.equalsIgnoreCase("  ")){
-				ctrlPro.msgError("La caja de texto está vacía");
+				ctrlPro.msgError("La caja de texto estï¿½ vacï¿½a");
 			}else{
 				buscaEliminaProveedor();
 			}
@@ -376,7 +379,7 @@ public void buscaEliminaProveedor(){
 			txtcp.setText(resultado.getString("CP"));
 		
 			
-			int val=JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el registro actual?",
+			int val=JOptionPane.showConfirmDialog(null, "ï¿½Estï¿½ seguro de eliminar el registro actual?",
 			"Proveedor", JOptionPane.YES_NO_OPTION);
 			if(val==JOptionPane.YES_OPTION){
 				String lblIdProveedor=txtIdProveedor.getText();
@@ -413,7 +416,7 @@ public void buscaEliminaProveedor(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

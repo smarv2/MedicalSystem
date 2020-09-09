@@ -1,17 +1,23 @@
+package com.mx.medicalsystem.blogic;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.metal.*;
 
-public class TipoMedicamento extends JFrame{
+public class Recetas extends JFrame{
 	JPanel panel = new JPanel();
 	
-	JLabel id = new JLabel("Id Tipo Medicamento:");
-	JTextField txtid = new JTextField(10);
-	JLabel tipopresen = new JLabel("Tipo de Presentacion:");
-	JTextField txttipopresen = new JTextField(10);
-
-	 private final JToolBar herramientas=new JToolBar();
+	JLabel idreceta = new JLabel("Id Receta:");
+	JTextField txtidreceta = new JTextField(3);
+	JLabel idMed = new JLabel("Id Medico:");
+	JTextField txtidMed = new JTextField(10);
+	JLabel idpaciente = new JLabel("Id Paciente:");
+	JTextField txtidpaciente= new JTextField(2);
+	JLabel fechareceta = new JLabel("Fecha Receta:");
+	JTextField txtfechareceta = new JTextField(2);
+	
+	private final JToolBar herramientas=new JToolBar();
 	
 	private final ImageIcon imagen1=new ImageIcon("nuevo.gif");
 	private JButton btnnuevo=new JButton(imagen1);
@@ -31,11 +37,10 @@ public class TipoMedicamento extends JFrame{
 	private final ImageIcon imagen6=new ImageIcon("regresar.gif");
 	private JButton btnregresar=new JButton(imagen6);
 	
-
 	
-	TipoMedicamento(){
-		super("TIPO DE MEDICAMENTO");
-		setSize(480,260);
+		Recetas(){
+		super("RECETAS");
+		setSize(400,300);
 		setVisible(true);
 		setResizable(false);
 		
@@ -46,20 +51,40 @@ public class TipoMedicamento extends JFrame{
 		
 		
 		panel.setLayout(null);
-		id.setBounds(new Rectangle(20,20,120,20));
-		txtid.setBounds(new Rectangle(160,20,50,20));
+		idreceta.setBounds(new Rectangle(40,20,120,20));
+		txtidreceta.setBounds(new Rectangle(130,20,50,20));
 		
-		tipopresen.setBounds(new Rectangle(20,60,200,20));
-		txttipopresen.setBounds(new Rectangle(160,60,150,20));
-	
-				
-		panel.add(id);
-		panel.add(txtid);
-		panel.add(tipopresen);
-		panel.add(txttipopresen);
-
-	
+		idMed.setBounds(new Rectangle(40,60,200,20));
+		txtidMed.setBounds(new Rectangle(130,60,50,20));
+		idpaciente.setBounds(new Rectangle(40,100,200,20));
+		txtidpaciente.setBounds(new Rectangle(130,100,50,20));
+		fechareceta.setBounds(new Rectangle(40,140,200,20));
+		txtfechareceta.setBounds(new Rectangle(130,140,50,20));
+		
+		
+		
+		panel.add(idreceta);
+		panel.add(txtidreceta);
+		panel.add(idMed);
+		panel.add(txtidMed);
+		panel.add(idpaciente);
+		panel.add(txtidpaciente);
+		panel.add(fechareceta);
+		panel.add(txtfechareceta);
+		
 		add(panel);
+		
+		idreceta.setFont(new Font("Georgia",Font.BOLD,12));
+		idreceta.setForeground(Color.black);
+		
+		idMed.setFont(new Font("Georgia",Font.BOLD,12));
+		idMed.setForeground(Color.black);
+		
+		idpaciente.setFont(new Font("Georgia",Font.BOLD,12));
+		idpaciente.setForeground(Color.black);
+		
+		fechareceta.setFont(new Font("Georgia",Font.BOLD,12));
+		fechareceta.setForeground(Color.black);
 		
 		btnnuevo.setToolTipText("Nuevo registro");
 		btnbuscar.setToolTipText("Buscar registro");
@@ -89,13 +114,16 @@ public void agregaABarra(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);
       JDialog.setDefaultLookAndFeelDecorated(true);
-	    new TipoMedicamento();
+	    new Recetas();
 	
-	}
+	}	
+	
+	
 }
+	
 	

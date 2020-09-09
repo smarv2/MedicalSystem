@@ -1,3 +1,5 @@
+package com.mx.medicalsystem.blogic;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -131,7 +133,7 @@ public void agregaABarra(){
       try{
          UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
       } catch (Exception ex) {
-         System.out.println("Falló la carga del tema");
+         System.out.println("Fallï¿½ la carga del tema");
          System.out.println(ex);
       }
       JFrame.setDefaultLookAndFeelDecorated(true);

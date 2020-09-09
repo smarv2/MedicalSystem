@@ -1,3 +1,5 @@
+package com.mx.medicalsystem.dao;
+
 import javax.swing.*;
 import java.sql.*;
 
@@ -97,7 +99,7 @@ public class ctrlProveedor{
     	JOptionPane.showMessageDialog(null, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
     public void msgInf(String inf){
-    	JOptionPane.showMessageDialog(null, inf, "Información", JOptionPane.WARNING_MESSAGE);
+    	JOptionPane.showMessageDialog(null, inf, "Informaciï¿½n", JOptionPane.WARNING_MESSAGE);
     }
     
 }
