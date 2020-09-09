@@ -1,14 +1,12 @@
 package com.mx.medicalsystem.blogic;
 
 import com.mx.medicalsystem.dao.ctrlConsultorio;
-import com.mx.medicalsystem.util.ConexionMySQL;
 import com.mx.medicalsystem.util.Utils;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.metal.*;
 import javax.swing.border.*;
-import java.sql.*;
 
 public class Consultorio extends JFrame {
 
@@ -114,13 +112,12 @@ public class Consultorio extends JFrame {
     public void eventos() {
         btnguardar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
+                if (!txtidConsul.getText().equalsIgnoreCase("")) {
                     String idConsul = txtidConsul.getText();
                     String desc = txtdesc.getText();
                     ctrlConsul.insertaConsultorio(idConsul, desc);
-                } catch (Exception e2) {
-                    System.err.println("Error: " + e2);
-                    limpiaCampos();
+                } else {
+                    utils.msgError("Debe capturar la informacion a guardar.");
                 }
             }
         }
@@ -128,16 +125,22 @@ public class Consultorio extends JFrame {
 
         btnbuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String idConsul = txtidConsul.getText();
-                String descripcion;
-                descripcion = ctrlConsul.buscaConsultorio(idConsul);
+                if (!txtidConsul.getText().equalsIgnoreCase("")) {
+                    System.out.println("idConsul: " + txtidConsul.getText());
+                    String idConsul = txtidConsul.getText();
+                    String descripcion;
+                    descripcion = ctrlConsul.buscaConsultorio(idConsul);
 
-                if (descripcion != "") {
-                    txtdesc.setText(descripcion);
+                    if (descripcion != "") {
+                        txtdesc.setText(descripcion);
+                    } else {
+                        utils.msgError("No se encontró el registro.");
+                        limpiaCampos();
+                    }
                 } else {
-                    utils.msgError("No se encontró el registro.");
-                    limpiaCampos();
+                    utils.msgError("Debe indicar el registro a buscar.");
                 }
+
             }
         }
         );
@@ -153,7 +156,7 @@ public class Consultorio extends JFrame {
                 String idConsul = txtidConsul.getText();
 
                 if (idConsul.equalsIgnoreCase("") || idConsul.equalsIgnoreCase(" ") || idConsul.equalsIgnoreCase("  ")) {
-                    utils.msgError("La caja de texto está vacía");
+                    utils.msgError("Debe indicar la informacion del registro a eliminar.");
                 } else {
                     buscaEliminaConsultorio();
                     limpiaCampos();
@@ -178,19 +181,28 @@ public class Consultorio extends JFrame {
                     String idConsul = txtidConsul.getText();
                     String desc = txtdesc.getText();
 
-                    ctrlConsul.actualizaConsultorio(idConsul, desc);
-                    limpiaCampos();
+                    String descripcion;
+                    descripcion = ctrlConsul.buscaConsultorio(idConsul);
+
+                    if (descripcion != "") {
+                        ctrlConsul.actualizaConsultorio(idConsul, desc);
+                        limpiaCampos();
+                    } else {
+                        utils.msgError("No se encontró el registro a modificar.");
+                        limpiaCampos();
+                    }
+
                 }
             }
         }
         );
     }
-    
-    public void limpiaCampos(){
+
+    public void limpiaCampos() {
         txtidConsul.setText("");
         txtdesc.setText("");
     }
-    
+
     public void buscaEliminaConsultorio() {
         try {
             String idConsul = txtidConsul.getText();
@@ -198,7 +210,12 @@ public class Consultorio extends JFrame {
             descripcion = ctrlConsul.buscaConsultorio(idConsul);
 
             if (descripcion != "") {
-                ctrlConsul.EliminaConsultorio(idConsul);
+                int val = JOptionPane.showConfirmDialog(null, "Está seguro de eliminar el registro de Consultorio seleccionado?",
+                        "Eliminacion de Consultorio.", JOptionPane.YES_NO_OPTION);
+                if (val == JOptionPane.YES_OPTION) {
+                    ctrlConsul.EliminaConsultorio(idConsul);
+                }
+
             } else {
                 utils.msgError("No se encontró el regustro.");
             }

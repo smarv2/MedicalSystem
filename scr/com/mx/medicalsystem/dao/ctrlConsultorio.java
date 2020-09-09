@@ -36,7 +36,7 @@ public class ctrlConsultorio {
             ConexionMySQL mysql = new ConexionMySQL();
             Connection conexion = mysql.conectar();
 
-            sentencia = conexion.prepareStatement("insert into Consultorio values(?, ?)");
+            sentencia = conexion.prepareStatement("insert into consultorios values(?, ?)");
 
             sentencia.setString(1, idConsul);
             sentencia.setString(2, desc);
@@ -47,9 +47,9 @@ public class ctrlConsultorio {
             conexion.close();
 
             utils.msgInf("Los datos han sido guardados");
-        } catch (SQLException err) {
-            utils.msgError("Alguno de los datos insertados es incorrecto.");
-            System.err.println("Alguno de los datos insertados es incorrecto: " + err);
+        } catch (SQLException e) {
+            utils.msgError("Error al guardar la informacion del Consultrio.");
+            System.err.println("Error en metodo insertaConsultorio: " + e);
         }
     }
 
@@ -60,7 +60,7 @@ public class ctrlConsultorio {
             ConexionMySQL mysql = new ConexionMySQL();
             Connection conexion = mysql.conectar();
 
-            sentencia = conexion.prepareStatement("delete from Consultorio where IdConsultorio=?");
+            sentencia = conexion.prepareStatement("delete from consultorios where IdConsultorio=?");
             sentencia.setString(1, idConsul);
             sentencia.executeUpdate();
 
@@ -79,7 +79,7 @@ public class ctrlConsultorio {
             ConexionMySQL mysql = new ConexionMySQL();
             Connection conexion = mysql.conectar();
             sentencia = conexion.prepareStatement(
-                    "update Consultorio set IdConsultorio=?, DescripcionConsultorio=? where IdConsultorio=?");
+                    "update consultorios set IdConsultorio=?, DescripcionConsultorio=? where IdConsultorio=?");
 
             sentencia.setString(1, idConsul);
             sentencia.setString(2, desc);
@@ -95,14 +95,13 @@ public class ctrlConsultorio {
     }
 
     public String buscaConsultorio(String idConsul) {
-        System.out.println("buscaConsultorio");
         String descConsultorio = null;
         try {
             //Connection conexion = DriverManager.getConnection(ctrlConsul.url);
 
             ConexionMySQL mysql = new ConexionMySQL();
             Connection conexion = mysql.conectar();
-            PreparedStatement sentencia = conexion.prepareStatement("select * from Consultorio where IdConsultorio=?");
+            PreparedStatement sentencia = conexion.prepareStatement("select * from consultorios where IdConsultorio=?");
             sentencia.setString(1, idConsul);
             ResultSet resultado = sentencia.executeQuery();
 
