@@ -87,7 +87,7 @@ public class Seleccion extends JFrame {
         MetalLookAndFeel.setCurrentTheme(new TemaDigitalStone());
         try {
             UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
             System.out.println("Falló la carga del tema");
             System.out.println(ex);
         }

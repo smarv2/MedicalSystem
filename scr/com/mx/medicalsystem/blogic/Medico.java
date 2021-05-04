@@ -1,7 +1,6 @@
 package com.mx.medicalsystem.blogic;
 
 import com.mx.medicalsystem.dao.ctrlMedico;
-import com.mx.medicalsystem.util.ConexionMySQL;
 import com.mx.medicalsystem.util.Utils;
 import com.mx.medicalsystem.vo.MedicosVO;
 import java.awt.*;
@@ -9,7 +8,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.metal.*;
 import javax.swing.border.*;
-import java.sql.*;
 
 public class Medico extends JFrame {
 
